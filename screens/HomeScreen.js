@@ -3,20 +3,24 @@ import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import tw from "twrnc";
+import NavOptions from "../components/NavOptions";
 
 const HomeScreen = () => {
   return (
     <SafeAreaView style={tw`bg-white h-full`}>
-      <View>
+      <View style={tw`p-2`}>
         <Image
           style={{
-            width: 200,
-            height: 200,
+            width: 215,
+            height: 53,
+            resizeMode: "contain",
           }}
-          source={{
-            uri: "https://i.ibb.co/rZ7410v/app-logo.png",
-          }}
+          source={
+            // uri: "./logo-eminence.png",
+            require("./logo-eminence.png")
+          }
         />
+        <NavOptions />
       </View>
     </SafeAreaView>
   );
