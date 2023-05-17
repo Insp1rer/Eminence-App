@@ -1,14 +1,16 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Provider } from "react-redux";
-import HomeScreen from "./screens/HomeScreen";
-import { store } from "./store";
+import { StyleSheet, Text, View, FlatList, Image } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import HomeScreen from "./src/screens/HomeScreen";
+import RestaurantDetailsScreen from "./src/screens/RestaurantDetailsScreen";
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <HomeScreen />
-    </Provider>
+    <View style={styles.container}>
+      {/* <HomeScreen /> */}
+      <RestaurantDetailsScreen />
+      <StatusBar style="Light" />
+    </View>
   );
 }
 
@@ -18,5 +20,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    // padding: 10,
+    // paddingVertical: 30, //нагадувалка прибрати це
   },
 });
