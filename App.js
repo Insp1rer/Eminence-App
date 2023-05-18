@@ -1,30 +1,21 @@
 import React from "react";
 import { StyleSheet, Text, View, FlatList, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import HomeScreen from "./src/screens/HomeScreen";
-import RestaurantDetailsScreen from "./src/screens/RestaurantDetailsScreen";
-import DishDetailsScreen from "./src/screens/DishDetailsScreen";
-import Basket from "./src/screens/Basket";
+import RootNavigator from "./src/navigation";
+
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <NavigationContainer>
+      <RootNavigator />
       {/* <HomeScreen /> */}
       {/* <RestaurantDetailsScreen /> */}
       {/* <DishDetailsScreen /> */}
-      <Basket />
+      {/* <Basket /> */}
+      {/* <OrdersScreen /> */}
+      {/* <OrderDetails /> */}
       <StatusBar style="Light" />
-    </View>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    // padding: 10,
-    // paddingVertical: 30, //нагадувалка прибрати це
-  },
-});
