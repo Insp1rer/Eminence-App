@@ -51,7 +51,7 @@ const DishDetailsScreen = () => {
         style={styles.button}
       >
         <Text style={styles.buttonText}>
-          Додати {quantity} в кошик &#8226; ${getTotal()}
+          Додати {quantity} в кошик &#8226; {getTotal()} UAH
         </Text>
       </Pressable>
     </View>

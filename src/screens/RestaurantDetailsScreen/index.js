@@ -1,25 +1,41 @@
-import { View, Text, Image, FlatList, StyleSheet } from "react-native";
+import { useState, useEffect } from "react";
+import { View, FlatList, StyleSheet, ActivityIndicator } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import DishListItem from "../../components/DishListItem";
-import restaurants from "../../../assets/data/restaurants.json";
 import Header from "./Header";
 import styles from "./styles";
 import { useRoute, useNavigation } from "@react-navigation/native";
-
-const restaurant = restaurants[0];
+import { DataStore } from "aws-amplify";
+import { Restaurant, Dish } from "../../models";
 
 const RestaurantDetailsPage = () => {
+  const [restaurant, setRestaurant] = useState(null);
+  const [dishes, setDishes] = useState([]);
+
   const route = useRoute();
   const navigation = useNavigation();
 
   const id = route.params?.id;
-  console.warn(id);
+
+  useEffect(() => {
+    DataStore.query(Restaurant, id).then(setRestaurant);
+
+    DataStore.query(Dish, (dish) => dish.restaurantID("eq", id)).then(
+      setDishes
+    );
+  }, []); //підгружаю ресторан по ID
+
+  if (!restaurant) {
+    return <ActivityIndicator size={"large"} color="gray" />;
+  }
+
+  console.log(restaurant);
 
   return (
     <View style={styles.page}>
       <FlatList
         ListHeaderComponent={() => <Header restaurant={restaurant} />}
-        data={restaurant.dishes}
+        data={dishes}
         renderItem={({ item }) => <DishListItem dish={item} />}
         keyExtractor={(item) => item.name}
       />

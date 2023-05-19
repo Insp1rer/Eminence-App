@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { StyleSheet, FlatList, View } from "react-native";
 import RestaurantItem from "../../components/RestaurantItem";
-import { DataStore } from "@aws-amplify/datastore";
+import { DataStore } from "aws-amplify";
 import { Restaurant } from "../../models";
 
 export default function HomeScreen() {
@@ -12,18 +12,17 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <View style={styles.page}>
-      <FlatList
-        data={restaurants}
-        renderItem={({ item }) => <RestaurantItem restaurant={item} />}
-        showsVerticalScrollIndicator={false}
-      />
-    </View>
+    <FlatList
+      style={styles.page}
+      data={restaurants}
+      renderItem={({ item }) => <RestaurantItem restaurant={item} />}
+      showsVerticalScrollIndicator={false}
+    />
   );
 }
 
 const styles = StyleSheet.create({
   page: {
-    padding: 10,
+    paddingHorizontal: 10,
   },
 });
