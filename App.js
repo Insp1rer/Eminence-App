@@ -9,13 +9,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <RootNavigator />
-      {/* <HomeScreen /> */}
-      {/* <RestaurantDetailsScreen /> */}
-      {/* <DishDetailsScreen /> */}
-      {/* <Basket /> */}
-      {/* <OrdersScreen /> */}
-      {/* <OrderDetails /> */}
-      <StatusBar style="Light" />
+
+      <StatusBar style="light" />
     </NavigationContainer>
   );
 }

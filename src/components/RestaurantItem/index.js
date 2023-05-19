@@ -1,10 +1,13 @@
-import React from "react";
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const RestaurantItem = ({ restaurant }) => {
+  const navigation = useNavigation();
+
   const onPress = () => {
-    console.warn("pressed");
+    navigation.navigate("Restaurant", { id: restaurant.id });
   };
+
   return (
     <Pressable onPress={onPress} style={styles.restaurantContainer}>
       <Image
