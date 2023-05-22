@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { View, FlatList, StyleSheet, ActivityIndicator } from "react-native";
+import { View, FlatList, ActivityIndicator } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import DishListItem from "../../components/DishListItem";
 import Header from "./Header";
@@ -19,17 +19,15 @@ const RestaurantDetailsPage = () => {
 
   useEffect(() => {
     DataStore.query(Restaurant, id).then(setRestaurant);
-
-    DataStore.query(Dish, (dish) => dish.restaurantID("eq", id)).then(
-      setDishes
-    );
-  }, []); //підгружаю ресторан по ID
+    //підгружаю ресторан по ID
+    DataStore.query(Dish, (dish) => dish.restaurantID.eq(id)).then(setDishes);
+  }, []);
 
   if (!restaurant) {
     return <ActivityIndicator size={"large"} color="gray" />;
   }
 
-  console.log(restaurant);
+  // console.log(restaurant);
 
   return (
     <View style={styles.page}>
