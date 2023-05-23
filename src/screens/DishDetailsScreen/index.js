@@ -10,6 +10,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { DataStore } from "aws-amplify";
 import { Dish } from "../../models";
+import { useBasketContext } from "../../contexts/BasketContext";
 
 // import restaurants from "../../../assets/data/restaurants.json";
 // import { ActivityIndicator } from "react-native-paper";
@@ -22,11 +23,18 @@ const DishDetailsScreen = () => {
   const route = useRoute();
   const id = route.params?.id;
 
+  const { addDishToBasket } = useBasketContext();
+
   useEffect(() => {
     if (id) {
       DataStore.query(Dish, id).then(setDish);
     }
   }, [id]);
+
+  const onAddToBasket = async () => {
+    await addDishToBasket(dish, quantity);
+    navigation.goBack();
+  };
 
   const onMinus = () => {
     if (quantity > 1) {
@@ -68,10 +76,7 @@ const DishDetailsScreen = () => {
         />
       </View>
 
-      <Pressable
-        onPress={() => navigation.navigate("Basket")}
-        style={styles.button}
-      >
+      <Pressable onPress={onAddToBasket} style={styles.button}>
         <Text style={styles.buttonText}>
           Додати {quantity} в кошик &#8226; {getTotal()} UAH
         </Text>

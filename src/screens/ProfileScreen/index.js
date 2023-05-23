@@ -16,12 +16,15 @@ const Profile = () => {
 
   const { sub, setDbUser } = useAuthContext();
 
+  const navigation = useNavigation();
+
   const onSave = async () => {
     if (dbUser) {
       await updateUser();
     } else {
       await createUser();
     }
+    navigation.goBack();
   };
 
   const updateUser = async () => {

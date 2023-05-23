@@ -40,23 +40,23 @@ type User @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
   address: String!
-  lat: Float!
-  lng: Float!
+  lat: String!
   Orders: [Order] @hasMany(indexName: "byUser", fields: ["id"])
-  Baskets: [Basket] @hasMany(indexName: "byUser", fields: ["id"])
+  Basket: [Basket] @hasMany(indexName: "byUser", fields: ["id"])
   sub: String!
+  lng: String!
 }
 
-type Dish @model @auth(rules: [{allow: public}, {allow: owner}]) {
+type Dish @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
   image: String
   description: String
-  price: Float!
+  price: Float
   restaurantID: ID! @index(name: "byRestaurant")
 }
 
-type Restaurant @model @auth(rules: [{allow: public}, {allow: owner}]) {
+type Restaurant @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
   image: String!

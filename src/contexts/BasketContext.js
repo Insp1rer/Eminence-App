@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { DataStore } from "aws-amplify";
-import { Basket, BasketDish } from "../models";
+import { Basket, BasketDish, Dish } from "../models";
 import { useAuthContext } from "./AuthContext";
 
 const BasketContext = createContext({});
@@ -18,14 +18,16 @@ const BasketContextProvider = ({ children }) => {
   );
 
   useEffect(() => {
-    DataStore.query(Basket, (b) =>
-      b.restaurantID("eq", restaurant.id).userID("eq", dbUser.id)
+    DataStore.query(
+      Basket,
+      (basket) =>
+        basket.userID.eq(dbUser.id) && basket.restaurantID.eq(restaurant.id)
     ).then((baskets) => setBasket(baskets[0]));
-  }, [dbUser, restaurant]);
+  }, [restaurant, dbUser]);
 
   useEffect(() => {
     if (basket) {
-      DataStore.query(BasketDish, (bd) => bd.basketID("eq", basket.id)).then(
+      DataStore.query(BasketDish, (bd) => bd.basketID.eq(basket.id)).then(
         setBasketDishes
       );
     }

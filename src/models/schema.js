@@ -452,14 +452,7 @@ export const schema = {
                 "lat": {
                     "name": "lat",
                     "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "lng": {
-                    "name": "lng",
-                    "isArray": false,
-                    "type": "Float",
+                    "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -479,8 +472,8 @@ export const schema = {
                         ]
                     }
                 },
-                "Baskets": {
-                    "name": "Baskets",
+                "Basket": {
+                    "name": "Basket",
                     "isArray": true,
                     "type": {
                         "model": "Basket"
@@ -497,6 +490,13 @@ export const schema = {
                 },
                 "sub": {
                     "name": "sub",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "lng": {
+                    "name": "lng",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
@@ -579,7 +579,7 @@ export const schema = {
                     "name": "price",
                     "isArray": false,
                     "type": "Float",
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "restaurantID": {
@@ -628,18 +628,6 @@ export const schema = {
                         "rules": [
                             {
                                 "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            },
-                            {
-                                "provider": "userPools",
-                                "ownerField": "owner",
-                                "allow": "owner",
-                                "identityClaim": "cognito:username",
                                 "operations": [
                                     "create",
                                     "update",
@@ -793,18 +781,6 @@ export const schema = {
                                     "delete",
                                     "read"
                                 ]
-                            },
-                            {
-                                "provider": "userPools",
-                                "ownerField": "owner",
-                                "allow": "owner",
-                                "identityClaim": "cognito:username",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
                             }
                         ]
                     }
@@ -826,5 +802,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.4.3",
-    "version": "6a330925f01b2031933e7613040ff17e"
+    "version": "9135f336e2e93fcbf307bef41a57ad89"
 };

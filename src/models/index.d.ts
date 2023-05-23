@@ -158,11 +158,11 @@ type EagerUser = {
   readonly id: string;
   readonly name: string;
   readonly address: string;
-  readonly lat: number;
-  readonly lng: number;
+  readonly lat: string;
   readonly Orders?: (Order | null)[] | null;
-  readonly Baskets?: (Basket | null)[] | null;
+  readonly Basket?: (Basket | null)[] | null;
   readonly sub: string;
+  readonly lng: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -175,11 +175,11 @@ type LazyUser = {
   readonly id: string;
   readonly name: string;
   readonly address: string;
-  readonly lat: number;
-  readonly lng: number;
+  readonly lat: string;
   readonly Orders: AsyncCollection<Order>;
-  readonly Baskets: AsyncCollection<Basket>;
+  readonly Basket: AsyncCollection<Basket>;
   readonly sub: string;
+  readonly lng: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -199,7 +199,7 @@ type EagerDish = {
   readonly name: string;
   readonly image?: string | null;
   readonly description?: string | null;
-  readonly price: number;
+  readonly price?: number | null;
   readonly restaurantID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
@@ -214,7 +214,7 @@ type LazyDish = {
   readonly name: string;
   readonly image?: string | null;
   readonly description?: string | null;
-  readonly price: number;
+  readonly price?: number | null;
   readonly restaurantID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
