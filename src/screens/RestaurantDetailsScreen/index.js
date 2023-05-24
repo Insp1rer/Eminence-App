@@ -49,8 +49,6 @@ const RestaurantDetailsPage = () => {
     return <ActivityIndicator size={"large"} color="gray" />;
   }
 
-  // console.log(restaurant);
-
   return (
     <View style={styles.page}>
       <FlatList
@@ -72,7 +70,7 @@ const RestaurantDetailsPage = () => {
           style={styles.button}
         >
           <Text style={styles.buttonText}>
-            Відкрити кошик ({basketDishes.length})
+            Open basket ({basketDishes.length})
           </Text>
         </Pressable>
       )}

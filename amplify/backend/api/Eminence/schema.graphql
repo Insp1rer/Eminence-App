@@ -42,7 +42,7 @@ type User @model @auth(rules: [{allow: public}]) {
   address: String!
   lat: String!
   Orders: [Order] @hasMany(indexName: "byUser", fields: ["id"])
-  Basket: [Basket] @hasMany(indexName: "byUser", fields: ["id"])
+  Baskets: [Basket] @hasMany(indexName: "byUser", fields: ["id"])
   sub: String!
   lng: String!
 }

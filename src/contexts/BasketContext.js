@@ -11,19 +11,31 @@ const BasketContextProvider = ({ children }) => {
   const [restaurant, setRestaurant] = useState(null);
   const [basket, setBasket] = useState(null);
   const [basketDishes, setBasketDishes] = useState([]);
+  const [data] = useState([]);
 
-  const totalPrice = basketDishes.reduce(
-    (sum, basketDish) => sum + basketDish.quantity * basketDish.Dish.price,
+  const totalPrice = data.reduce(
+    (sum, basketDish, data) => sum + data.price * basketDish.quantity,
     restaurant?.deliveryFee
   );
+
+  //console.log(dbUser);
+  //console.log(typeof totalPrice);
+  // console.log(restaurant);
 
   useEffect(() => {
     DataStore.query(
       Basket,
       (basket) =>
-        basket.userID.eq(dbUser.id) && basket.restaurantID.eq(restaurant.id)
+        basket.userID.eq(Object(dbUser).id) &&
+        basket.restaurantID.eq(Object(restaurant).id)
     ).then((baskets) => setBasket(baskets[0]));
   }, [restaurant, dbUser]);
+
+  // useEffect(() => {
+  //   DataStore.query(BasketDish, (basketDish) =>
+  //     basketDish.basketID.eq(Basket.id)
+  //   ).apply(setBasket(this));
+  // }, [Basket]);
 
   useEffect(() => {
     if (basket) {

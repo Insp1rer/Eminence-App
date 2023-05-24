@@ -160,7 +160,7 @@ type EagerUser = {
   readonly address: string;
   readonly lat: string;
   readonly Orders?: (Order | null)[] | null;
-  readonly Basket?: (Basket | null)[] | null;
+  readonly Baskets?: (Basket | null)[] | null;
   readonly sub: string;
   readonly lng: string;
   readonly createdAt?: string | null;
@@ -177,7 +177,7 @@ type LazyUser = {
   readonly address: string;
   readonly lat: string;
   readonly Orders: AsyncCollection<Order>;
-  readonly Basket: AsyncCollection<Basket>;
+  readonly Baskets: AsyncCollection<Basket>;
   readonly sub: string;
   readonly lng: string;
   readonly createdAt?: string | null;

@@ -472,8 +472,8 @@ export const schema = {
                         ]
                     }
                 },
-                "Basket": {
-                    "name": "Basket",
+                "Baskets": {
+                    "name": "Baskets",
                     "isArray": true,
                     "type": {
                         "model": "Basket"
@@ -802,5 +802,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.4.3",
-    "version": "9135f336e2e93fcbf307bef41a57ad89"
+    "version": "6260621d09b7338f386e820d528fe7e6"
 };

@@ -12,8 +12,12 @@ const OrderContextProvider = ({ children }) => {
 
   const [orders, setOrders] = useState([]);
 
+  console.log(dbUser);
+
   useEffect(() => {
-    DataStore.query(Order, (o) => o.userID("eq", dbUser.id)).then(setOrders);
+    DataStore.query(Order, (order) => order.userID.eq(dbUser.id)).then(
+      setOrders
+    );
   }, [dbUser]);
 
   const createOrder = async () => {
@@ -46,7 +50,7 @@ const OrderContextProvider = ({ children }) => {
   const getOrder = async (id) => {
     const order = await DataStore.query(Order, id);
     const orderDishes = await DataStore.query(OrderDish, (od) =>
-      od.orderID("eq", id)
+      od.orderID.eq(id)
     );
 
     return { ...order, dishes: orderDishes };
